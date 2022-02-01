@@ -1,0 +1,43 @@
+﻿@model Patient
+
+<h1>Edit</h1>
+<form method="post" asp-controller="Patients">
+
+    <input type="hidden" asp-for="Id" />
+
+    @*defaut value of method of form is get
+        methods post send data to controller
+    *@
+    <div class="row">
+
+        <label asp-for="Fullname" class="col-1"></label>
+        <input asp-for="Fullname" class=" col-4 form-control " />
+        <span asp-validation-for="Fullname" class="text-danger"> </span>
+    </div>
+    <div class="row">
+
+        <label asp-for="Age" class="col-1"></label>
+        <input type="number" asp-for="Age" class=" col-4 form-control " />
+        <span asp-validation-for="Age" class="text-danger"> </span>
+    </div>
+
+    <div class="row">
+
+        <label asp-for="Diagnesis" class="col-1"></label>
+        <input asp-for="Diagnesis" class=" col-4 form-control " />
+        <span asp-validation-for="Diagnesis" class="text-danger"> </span>
+    </div>
+    <div class="row">
+
+        <label asp-for="Notes" class="col-1"></label>
+        <input asp-for="Notes" class=" col-4 form-control " />
+    </div>
+    <div class="row">
+
+        <label asp-for="Treatment" class="col-1"></label>
+        <input asp-for="Treatment" class=" col-4 form-control " />
+    </div>
+
+
+    <button type="submit" class="btn-outline-primary">Edit </button>
+</form>

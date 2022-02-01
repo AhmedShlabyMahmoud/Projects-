@@ -1,0 +1,64 @@
+﻿@model Project_Poineet.Employee
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attend_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attend_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Leave_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leave_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Of_Hiring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Of_Hiring)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

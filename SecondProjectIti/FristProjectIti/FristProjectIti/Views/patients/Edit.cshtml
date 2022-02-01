@@ -1,0 +1,68 @@
+﻿@model Patient
+
+<h1>Edit</h1>
+<form method="post" asp-controller="Patients">
+
+    <input type="hidden" asp-for="Id" />
+
+    @*defaut value of method of form is get
+        methods post send data to controller
+    *@
+    <div class="row">
+
+        <label asp-for="Fullname" class="col-1"></label>
+        <input asp-for="Fullname" class=" col-4 form-control " />
+        <span asp-validation-for="Fullname" class="text-danger"> </span>
+    </div>
+    <div class="row">
+
+        <label asp-for="Age" class="col-1"></label>
+        <input type="number" asp-for="Age" class=" col-4 form-control " />
+        <span asp-validation-for="Age" class="text-danger"> </span>
+    </div>
+
+    <div class="row">
+
+        <label asp-for="Diagnesis" class="col-1"></label>
+        <input asp-for="Diagnesis" class=" col-4 form-control " />
+        <span asp-validation-for="Diagnesis" class="text-danger"> </span>
+    </div>
+    <div class="row">
+
+        <label asp-for="Notes" class="col-1"></label>
+        <input asp-for="Notes" class=" col-4 form-control " />
+    </div>
+    <div class="row">
+
+        <label asp-for="Treatment" class="col-1"></label>
+        <input asp-for="Treatment" class=" col-4 form-control " />
+    </div>
+    <div class="row form-group  ">
+        <label class="col-1" asp-for="DoctorId"></label>
+
+        <select asp-for="DoctorId"
+                asp-items="@ViewBag.AllDoctors"
+                class="col-4 form-control">
+        </select>
+    </div>
+    <div class="row">
+        <label asp-for="BirthDay" class="col-1"></label>
+        <input asp-for="BirthDay" class=" col-4 form-control " />
+        <span asp-validation-for="BirthDay" class="text-danger"> </span>
+    </div>
+    <div class="row">
+        <label asp-for="injuryTime" class="col-1"></label>
+        <input asp-for="injuryTime" class=" col-4 form-control " />
+        <span asp-validation-for="injuryTime" class="text-danger"> </span>
+    </div>
+    <div class="row">
+        <label asp-for="StartHiringtime" class="col-1"></label>
+        <input asp-for="StartHiringtime" class=" col-4 form-control " />
+        <span asp-validation-for="StartHiringtime" class="text-danger"> </span>
+    </div>
+    <img />
+    <input type="hidden" asp-for="CreationDate"/>
+    <button type="submit" class="btn-outline-primary">Edit </button>
+</form>
+<br />
+<a asp-controller="Patients" asp-action="Index">Back To List</a>

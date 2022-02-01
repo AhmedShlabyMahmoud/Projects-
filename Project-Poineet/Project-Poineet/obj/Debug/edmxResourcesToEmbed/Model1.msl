@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PioneerEmployeeDbModelStoreContainer" CdmEntityContainer="PioneerEmployeeDbEntities">
+    <EntitySetMapping Name="AttendanceTransactions">
+      <EntityTypeMapping TypeName="PioneerEmployeeDbModel.AttendanceTransaction">
+        <MappingFragment StoreEntitySet="AttendanceTransaction">
+          <ScalarProperty Name="netsalary" ColumnName="netsalary" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Employeeid" ColumnName="Employeeid" />
+          <ScalarProperty Name="TodayDateTrans" ColumnName="TodayDateTrans" />
+          <ScalarProperty Name="AttendTime" ColumnName="AttendTime" />
+          <ScalarProperty Name="leaveTime" ColumnName="leaveTime" />
+          <ScalarProperty Name="minus" ColumnName="minus" />
+          <ScalarProperty Name="bonus" ColumnName="bonus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="PioneerEmployeeDbModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Empolyee_ID" ColumnName="Empolyee-ID" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee-Name" />
+          <ScalarProperty Name="Employee_Salary" ColumnName="Employee-Salary" />
+          <ScalarProperty Name="Attend_Time" ColumnName="Attend-Time" />
+          <ScalarProperty Name="Leave_Time" ColumnName="Leave-Time" />
+          <ScalarProperty Name="Date_Of_Hiring" ColumnName="Date-Of-Hiring" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="PioneerEmployeeDbModel.Setting">
+        <MappingFragment StoreEntitySet="Setting">
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Bonus_count" ColumnName="Bonus-count" />
+          <ScalarProperty Name="Minus_count" ColumnName="Minus-count" />
+          <ScalarProperty Name="Holiday_s" ColumnName="Holiday's" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PioneerEmployeeDbModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,66 @@
+﻿@model stores.Bill_Details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bill_Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Qtn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qtn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bill_Head.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bill_Head.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemsTable.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemsTable.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

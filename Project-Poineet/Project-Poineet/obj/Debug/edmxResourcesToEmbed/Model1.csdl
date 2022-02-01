@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PioneerEmployeeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AttendanceTransaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employeeid" Type="Int32" Nullable="false" />
+    <Property Name="TodayDateTrans" Type="DateTime" Precision="3" />
+    <Property Name="AttendTime" Type="DateTime" Precision="3" />
+    <Property Name="leaveTime" Type="DateTime" Precision="3" />
+    <Property Name="minus" Type="Int32" />
+    <Property Name="bonus" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_AttendanceTransaction_Employees" FromRole="AttendanceTransaction" ToRole="Employees" />
+    <Property Name="netsalary" Type="Decimal" Precision="10" Scale="4" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Empolyee_ID" />
+    </Key>
+    <Property Name="Empolyee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Employee_Salary" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="Attend_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Leave_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Date_Of_Hiring" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AttendanceTransactions" Relationship="Self.FK_AttendanceTransaction_Employees" FromRole="Employees" ToRole="AttendanceTransaction" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bonus_count" Type="Int32" Nullable="false" />
+    <Property Name="Minus_count" Type="Int32" Nullable="false" />
+    <Property Name="Holiday_s" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Days" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_AttendanceTransaction_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="AttendanceTransaction" Type="Self.AttendanceTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Empolyee_ID" />
+      </Principal>
+      <Dependent Role="AttendanceTransaction">
+        <PropertyRef Name="Employeeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PioneerEmployeeDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AttendanceTransactions" EntityType="Self.AttendanceTransaction" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_AttendanceTransaction_Employees" Association="Self.FK_AttendanceTransaction_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="AttendanceTransaction" EntitySet="AttendanceTransactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

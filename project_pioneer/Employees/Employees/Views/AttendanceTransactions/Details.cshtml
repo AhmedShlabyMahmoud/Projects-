@@ -1,0 +1,58 @@
+﻿@model Employees.Models.AttendanceTransaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AttendanceTransaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmpName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmpName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TodayDateTrans)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TodayDateTrans)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaveTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Attend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attend)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

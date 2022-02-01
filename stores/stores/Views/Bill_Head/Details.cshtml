@@ -1,0 +1,102 @@
+﻿@model stores.Controllers.DetailsInvoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bill_Head</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.safeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.safeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.op)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.op)
+        </dd>
+        @*Total	Discount	Operate_Date	Name_client	Name_safe*@
+
+
+
+    </dl>
+
+
+</div>
+<table class="table">
+    <tr>
+        <th>
+          count
+        </th>
+        <th>
+            price
+        </th>
+        <th>
+            total
+        </th>
+
+        <th>
+            Name Item
+        </th>
+       
+    </tr>
+
+
+    @foreach (var item in Model.bill_Details)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qtn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemsTable.Name)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+

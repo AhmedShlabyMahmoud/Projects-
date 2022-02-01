@@ -1,0 +1,34 @@
+﻿@model Patient
+<dl>
+    <dt>id : </dt>
+    <dd>@Model.Id</dd>
+    <dt>age : </dt>
+    <dd>@Model.Age</dd>
+    <dt>name :</dt>
+    <dd>@Model.Fullname</dd>
+    <dt>Diagnesis :</dt>
+    <dd>
+        <a asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.Doctors.ID">
+            @Model.Doctors.Description
+        </a>
+
+    </dd>
+
+    <dt>Date Of Birth :</dt>
+    <dd>@Model.BirthDay.ToString("dd-mm-yyyy")</dd>
+
+    <dt>@Html.DisplayNameFor(e => e.injuryTime)</dt>
+    <dd>@Model.injuryTime.ToShortDateString()</dd>
+
+    <dt>@Html.DisplayNameFor(e => e.LastUpdateDate)</dt>
+    <dd>@Model.LastUpdateDate.ToShortTimeString()</dd>
+
+    <dt>@Html.DisplayNameFor(e => e.PersonalImageName)</dt>
+    <dd>
+        <img  src=@("~/images/"+Model.PersonalImageName) width="250" asp-append-version="true"/>
+    </dd>
+
+
+</dl>
+<br />
+<a asp-controller="Patients" asp-action="Index">Back To List</a>

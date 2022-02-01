@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bill_Details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Head_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_iD" Type="Int32" Nullable="false" />
+    <Property Name="Qtn" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Unit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bill_Head" Relationship="Self.FK_Bill_Details_Bill_Head" FromRole="Bill_Details" ToRole="Bill_Head" />
+    <NavigationProperty Name="ItemsTable" Relationship="Self.FK_Bill_Details_ItemsTable" FromRole="Bill_Details" ToRole="ItemsTable" />
+  </EntityType>
+  <EntityType Name="Bill_Head">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="client_Id" Type="Int32" Nullable="false" />
+    <Property Name="Safe_ID" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Operate_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Bill_Details" Relationship="Self.FK_Bill_Details_Bill_Head" FromRole="Bill_Head" ToRole="Bill_Details" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Bill_Head_Clients" FromRole="Bill_Head" ToRole="Clients" />
+    <NavigationProperty Name="Safe" Relationship="Self.FK_Bill_Head_Safe" FromRole="Bill_Head" ToRole="Safe" />
+    <Property Name="paid" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_client" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bill_Head" Relationship="Self.FK_Bill_Head_Clients" FromRole="Clients" ToRole="Bill_Head" />
+  </EntityType>
+  <EntityType Name="ItemsTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SellPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Bill_Details" Relationship="Self.FK_Bill_Details_ItemsTable" FromRole="ItemsTable" ToRole="Bill_Details" />
+    <NavigationProperty Name="ItemUnitsTables" Relationship="Self.FK_ItemUnitsTable_ItemsTable" FromRole="ItemsTable" ToRole="ItemUnitsTable" />
+    <NavigationProperty Name="Stockes" Relationship="Self.FK_Stockes_ItemsTable" FromRole="ItemsTable" ToRole="Stockes" />
+  </EntityType>
+  <EntityType Name="ItemUnitsTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ItemsTable" Relationship="Self.FK_ItemUnitsTable_ItemsTable" FromRole="ItemUnitsTable" ToRole="ItemsTable" />
+  </EntityType>
+  <EntityType Name="Safe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_safe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bill_Head" Relationship="Self.FK_Bill_Head_Safe" FromRole="Safe" ToRole="Bill_Head" />
+  </EntityType>
+  <EntityType Name="Stocke">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Store_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ItemsTable" Relationship="Self.FK_Stockes_ItemsTable" FromRole="Stockes" ToRole="ItemsTable" />
+    <NavigationProperty Name="StoresTable" Relationship="Self.FK_Stockes_StoresTable" FromRole="Stockes" ToRole="StoresTable" />
+  </EntityType>
+  <EntityType Name="StoresTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameStores" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Stockes" Relationship="Self.FK_Stockes_StoresTable" FromRole="StoresTable" ToRole="Stockes" />
+  </EntityType>
+  <Association Name="FK_Bill_Details_Bill_Head">
+    <End Role="Bill_Head" Type="Self.Bill_Head" Multiplicity="1" />
+    <End Role="Bill_Details" Type="Self.Bill_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill_Head">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill_Details">
+        <PropertyRef Name="Head_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Details_ItemsTable">
+    <End Role="ItemsTable" Type="Self.ItemsTable" Multiplicity="1" />
+    <End Role="Bill_Details" Type="Self.Bill_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemsTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill_Details">
+        <PropertyRef Name="Item_iD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Head_Clients">
+    <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+    <End Role="Bill_Head" Type="Self.Bill_Head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill_Head">
+        <PropertyRef Name="client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Head_Safe">
+    <End Role="Safe" Type="Self.Safe" Multiplicity="1" />
+    <End Role="Bill_Head" Type="Self.Bill_Head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Safe">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill_Head">
+        <PropertyRef Name="Safe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemUnitsTable_ItemsTable">
+    <End Role="ItemsTable" Type="Self.ItemsTable" Multiplicity="1" />
+    <End Role="ItemUnitsTable" Type="Self.ItemUnitsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemsTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ItemUnitsTable">
+        <PropertyRef Name="Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stockes_ItemsTable">
+    <End Role="ItemsTable" Type="Self.ItemsTable" Multiplicity="1" />
+    <End Role="Stockes" Type="Self.Stocke" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemsTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Stockes">
+        <PropertyRef Name="Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stockes_StoresTable">
+    <End Role="StoresTable" Type="Self.StoresTable" Multiplicity="1" />
+    <End Role="Stockes" Type="Self.Stocke" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StoresTable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Stockes">
+        <PropertyRef Name="Store_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StoresEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bill_Details" EntityType="Self.Bill_Details" />
+    <EntitySet Name="Bill_Head" EntityType="Self.Bill_Head" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="ItemsTables" EntityType="Self.ItemsTable" />
+    <EntitySet Name="ItemUnitsTables" EntityType="Self.ItemUnitsTable" />
+    <EntitySet Name="Safes" EntityType="Self.Safe" />
+    <EntitySet Name="Stockes" EntityType="Self.Stocke" />
+    <EntitySet Name="StoresTables" EntityType="Self.StoresTable" />
+    <AssociationSet Name="FK_Bill_Details_Bill_Head" Association="Self.FK_Bill_Details_Bill_Head">
+      <End Role="Bill_Head" EntitySet="Bill_Head" />
+      <End Role="Bill_Details" EntitySet="Bill_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Details_ItemsTable" Association="Self.FK_Bill_Details_ItemsTable">
+      <End Role="ItemsTable" EntitySet="ItemsTables" />
+      <End Role="Bill_Details" EntitySet="Bill_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Head_Clients" Association="Self.FK_Bill_Head_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Bill_Head" EntitySet="Bill_Head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Head_Safe" Association="Self.FK_Bill_Head_Safe">
+      <End Role="Safe" EntitySet="Safes" />
+      <End Role="Bill_Head" EntitySet="Bill_Head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemUnitsTable_ItemsTable" Association="Self.FK_ItemUnitsTable_ItemsTable">
+      <End Role="ItemsTable" EntitySet="ItemsTables" />
+      <End Role="ItemUnitsTable" EntitySet="ItemUnitsTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stockes_ItemsTable" Association="Self.FK_Stockes_ItemsTable">
+      <End Role="ItemsTable" EntitySet="ItemsTables" />
+      <End Role="Stockes" EntitySet="Stockes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stockes_StoresTable" Association="Self.FK_Stockes_StoresTable">
+      <End Role="StoresTable" EntitySet="StoresTables" />
+      <End Role="Stockes" EntitySet="Stockes" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(StoresModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(StoresModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

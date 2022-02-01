@@ -1,0 +1,58 @@
+﻿@model Project_Poineet.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attend_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attend_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Leave_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leave_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Of_Hiring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Of_Hiring)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Empolyee_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

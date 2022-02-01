@@ -1,0 +1,19 @@
+﻿@model Doctor
+<dl>
+    <dt>Doctor Name : </dt>
+    <dd>@Model.FullName</dd>
+    <dt>Specialty : </dt>
+    <dd>@Model.Description</dd>
+     
+</dl>
+
+<br />
+<div class="list-group col-3">
+    @foreach(var item in Model.patients)
+    {      
+    <a asp-controller="Patients" asp-action="Details" asp-route-id="@item.Id"
+       class="list-group-item  list-group-item-action">
+            @item.Fullname (@item.Diagnesis)</a>
+    }
+
+</div>

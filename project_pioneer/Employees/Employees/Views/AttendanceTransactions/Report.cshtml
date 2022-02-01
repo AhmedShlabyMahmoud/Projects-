@@ -1,0 +1,116 @@
+﻿@model Employees.Models.ReportEmp
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Report</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div class="row form-group  ">
+        @Html.LabelFor(model => model.year, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(n => n.YearId, new SelectList(Model.Years, "Id", "YearName"), htmlAttributes: new { @class = "form-control" })
+        </div>
+
+    </div>
+    <br>
+    <div class="row form-group  ">
+        @Html.LabelFor(model => model.month, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(n => n.MonthId, new SelectList(Model.Months, "Id", "MonthName"), htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <br>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmpID, "Employee Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(n => n.EmpIDVal, new SelectList(Model.Employees, "EmpID", "EmpName"), htmlAttributes: new { @class = "form-control" })
+
+        </div>
+    </div>
+    <br>
+    <div class="col-md-offset-2 col-md-10">
+
+       <button type="submit" class="btn-outline-primary boo"> Search </button>
+    
+    </div>
+
+    <br><br>
+</div>
+
+    }
+    <table class="table" style="border-spacing:3px">
+        <tr>
+            <th>
+                Employee Name 
+            </th>
+            <th>
+                Employee Salary
+            </th>
+            <th>
+                Days attendance
+
+            </th>
+            <th>
+                Days of Absence
+            </th>
+            <th>
+                hours of bonus
+            </th>
+            <th>
+                hours of minus
+            </th>
+            <th>
+                total bonus
+            </th>
+            <th>
+                total minus
+            </th>
+            <th>
+                net salary
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.nameEmp)
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.salaryEmp)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dayAttend)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dayAbsence)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.hoursbonus)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.hoursminus)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.bonus)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.minus)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.netsalary)
+            </td>
+
+        </tr>
+    </table>
+
+

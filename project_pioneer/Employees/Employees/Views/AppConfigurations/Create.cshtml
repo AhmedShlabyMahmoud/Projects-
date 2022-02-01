@@ -1,0 +1,169 @@
+﻿@model Employees.Models.AddMinusHours
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AppConfiguration</h4>
+        <hr />
+
+
+        <br><br>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BonusMoney, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BonusMoney, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.BonusMoney, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinusMoney, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinusMoney, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.MinusMoney, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AbsnceMoney, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AbsnceMoney, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.AbsnceMoney, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br><br>
+        <div id="bonusminus">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MinusMoney, htmlAttributes: new { @class = "control-label  col-md-2" })
+                <div class="col-md-10">
+                    <input class="control-label  " name="group1" value="1" id="hours" type="radio" />
+                    <label class="control-label  " for="hours">Per hours</label>
+                    <input style="display:none" class="form-control" type="number" id="id1">
+                </div>
+            </div>
+
+            <div style="margin-left:190px">
+                <input class="control-label " name="group1" value="2" id="Days" type="radio" />
+                <label class="control-label " for="Days">Per Days</label>
+                <input style="display:none" class="form-control " type="number" id="id2">
+            </div>
+
+            <br><br>
+            <div class="form-group">
+                @Html.LabelFor(model => model.BonusMoney, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input class="control-label  " name="group2" value="1" id="hour" type="radio" />
+                    <label class="control-label  " for="hour">Per hours</label>
+                    <input style="display:none" class="form-control " type="number" id="id3">
+                </div>
+            </div>
+
+            <div style="margin-left:190px">
+                <input class="control-label  " name="group2" value="2" id="Day" type="radio" />
+                <label class="control-label " for="Day">Per Days</label>
+                <input style="display: none" class="form-control" type="number" id="id4">
+            </div>
+        </div>
+        <br><br>
+        <div id="Attends">
+            <div class="form-group">
+                @Html.LabelFor(model => model.AbsnceMoney, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input class="control-label  " name="group3" value="1" id="Perhour" type="radio" />
+                    <label class="control-label  " for="Perhour">Per hours</label>
+                    <input style="display:none" class="form-control " type="number" id="id5">
+                </div>
+            </div>
+
+            <div style="margin-left:190px">
+                <input class="control-label  " name="group3" value="2" id="PerDays" type="radio" />
+                <label class="control-label " for="PerDays">Per Days</label>
+                <input style="display: none" class="form-control" type="number" id="id6">
+            </div>
+        </div>
+        <br> <br><br>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script type="text/javascript">
+    $(function () {
+
+            $('input[name=group1]').change(function () {
+                if (this.value == 1) {
+                    $('#id1').show();
+                    $('#id2').hide();
+                } else {
+                    $('#id1').hide();
+                    $('#id2').show();
+                }
+            });
+            $('#id1').change(function () {
+                var xVal = $("#id1").val();
+                var y = xVal * @Html.DisplayFor(model => model.MinusMoney);
+                $("#MinusMoney").val(y);
+            });
+
+            $('#id2').change(function () {
+                var xVal = $("#id2").val();
+                var y = xVal * (( @Html.DisplayFor(model => model.salary)) / 22);
+                $("#MinusMoney").val(y);
+            });
+            $('input[name=group2]').change(function () {
+                if (this.value == 1) {
+                    $('#id3').show();
+                    $('#id4').hide();
+                } else {
+                    $('#id3').hide();
+                    $('#id4').show();
+                }
+            });
+            $('#id3').change(function () {
+                var xVal = $("#id3").val();
+                var y = xVal * @Html.DisplayFor(model => model.BonusMoney);
+                $("#BonusMoney").val(y);
+
+            });
+            $('#id4').change(function () {
+                var xVal = $("#id4").val();
+                var y = xVal * (( @Html.DisplayFor(Model => Model.salary)) / 22);
+                $("#BonusMoney").val(y);
+            })
+
+          $('input[name=group3]').change(function () {
+                if (this.value == 1) {
+                    $('#id5').show();
+                    $('#id6').hide();
+                } else {
+                    $('#id5').hide();
+                    $('#id6').show();
+                }
+            });
+            $('#id5').change(function () {
+                var xVal = $("#id5").val();
+                var y = xVal*( @Html.DisplayFor(Model => Model.AbsnceMoney)) ;
+                $("#AbsnceMoney").val(y);
+            });
+            $('#id6').change(function () {
+                var xVal = $("#id6").val();
+                var y = xVal * (( @Html.DisplayFor(Model => Model.salaryAbsence)) / 22);
+                $("#AbsnceMoney").val(y);
+            });
+
+    });
+</script>
+

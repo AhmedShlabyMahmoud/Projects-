@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HrSystem.Attendance>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Todaydate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeavingTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendingTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Todaydate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeavingTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendingTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

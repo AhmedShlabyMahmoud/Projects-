@@ -1,0 +1,56 @@
+﻿@model Hr.Setting
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Setting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bonus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bonus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HolidayCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HolidayCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Holidaystring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Holidaystring)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

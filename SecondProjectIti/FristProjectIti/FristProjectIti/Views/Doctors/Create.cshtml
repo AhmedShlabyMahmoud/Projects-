@@ -1,0 +1,28 @@
+﻿@model Doctor
+
+<h1>Create : </h1>
+<form method="post" asp-controller="Doctors">
+
+    @*defaut value of method of form is get
+        methods post send data to controller
+    *@
+    <div class="form-group">
+
+        <label asp-for="FullName" class="col-1 "></label>
+        <input asp-for="FullName" class=" col-4 form-control " />
+        <span asp-validation-for="FullName" class="text-danger"> </span>
+    </div>
+    <div class="form-group">
+
+        <label asp-for="Description" class="col-1">Specialty</label>
+        <input  asp-for="Description" class=" col-4 form-control " />
+        <span asp-validation-for="Description" class="text-danger"> </span>
+    </div>
+ 
+  
+
+    <br />
+    <button type="submit" class="btn-outline-primary">Create </button>
+</form>
+<br />
+<a asp-controller="Doctors" asp-action="Index">Back To List</a>

@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PioneerEmployeeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttendanceTransaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employeeid" Type="int" Nullable="false" />
+          <Property Name="TodayDateTrans" Type="datetime" />
+          <Property Name="AttendTime" Type="datetime" />
+          <Property Name="leaveTime" Type="datetime" />
+          <Property Name="minus" Type="int" />
+          <Property Name="bonus" Type="int" />
+          <Property Name="netsalary" Type="decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Empolyee-ID" />
+          </Key>
+          <Property Name="Empolyee-ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee-Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Employee-Salary" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Attend-Time" Type="datetime" Nullable="false" />
+          <Property Name="Leave-Time" Type="datetime" Nullable="false" />
+          <Property Name="Date-Of-Hiring" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bonus-count" Type="int" Nullable="false" />
+          <Property Name="Minus-count" Type="int" Nullable="false" />
+          <Property Name="Holiday's" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Days" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_AttendanceTransaction_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="AttendanceTransaction" Type="Self.AttendanceTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Empolyee-ID" />
+            </Principal>
+            <Dependent Role="AttendanceTransaction">
+              <PropertyRef Name="Employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PioneerEmployeeDbModelStoreContainer">
+          <EntitySet Name="AttendanceTransaction" EntityType="Self.AttendanceTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AttendanceTransaction_Employees" Association="Self.FK_AttendanceTransaction_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="AttendanceTransaction" EntitySet="AttendanceTransaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PioneerEmployeeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AttendanceTransaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employeeid" Type="Int32" Nullable="false" />
+          <Property Name="TodayDateTrans" Type="DateTime" Precision="3" />
+          <Property Name="AttendTime" Type="DateTime" Precision="3" />
+          <Property Name="leaveTime" Type="DateTime" Precision="3" />
+          <Property Name="minus" Type="Int32" />
+          <Property Name="bonus" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_AttendanceTransaction_Employees" FromRole="AttendanceTransaction" ToRole="Employees" />
+          <Property Name="netsalary" Type="Decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Empolyee_ID" />
+          </Key>
+          <Property Name="Empolyee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Employee_Salary" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Attend_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Leave_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_Of_Hiring" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AttendanceTransactions" Relationship="Self.FK_AttendanceTransaction_Employees" FromRole="Employees" ToRole="AttendanceTransaction" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bonus_count" Type="Int32" Nullable="false" />
+          <Property Name="Minus_count" Type="Int32" Nullable="false" />
+          <Property Name="Holiday_s" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Days" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_AttendanceTransaction_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="AttendanceTransaction" Type="Self.AttendanceTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Empolyee_ID" />
+            </Principal>
+            <Dependent Role="AttendanceTransaction">
+              <PropertyRef Name="Employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PioneerEmployeeDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttendanceTransactions" EntityType="Self.AttendanceTransaction" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_AttendanceTransaction_Employees" Association="Self.FK_AttendanceTransaction_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="AttendanceTransaction" EntitySet="AttendanceTransactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PioneerEmployeeDbModelStoreContainer" CdmEntityContainer="PioneerEmployeeDbEntities">
+          <EntitySetMapping Name="AttendanceTransactions">
+            <EntityTypeMapping TypeName="PioneerEmployeeDbModel.AttendanceTransaction">
+              <MappingFragment StoreEntitySet="AttendanceTransaction">
+                <ScalarProperty Name="netsalary" ColumnName="netsalary" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Employeeid" ColumnName="Employeeid" />
+                <ScalarProperty Name="TodayDateTrans" ColumnName="TodayDateTrans" />
+                <ScalarProperty Name="AttendTime" ColumnName="AttendTime" />
+                <ScalarProperty Name="leaveTime" ColumnName="leaveTime" />
+                <ScalarProperty Name="minus" ColumnName="minus" />
+                <ScalarProperty Name="bonus" ColumnName="bonus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PioneerEmployeeDbModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Empolyee_ID" ColumnName="Empolyee-ID" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee-Name" />
+                <ScalarProperty Name="Employee_Salary" ColumnName="Employee-Salary" />
+                <ScalarProperty Name="Attend_Time" ColumnName="Attend-Time" />
+                <ScalarProperty Name="Leave_Time" ColumnName="Leave-Time" />
+                <ScalarProperty Name="Date_Of_Hiring" ColumnName="Date-Of-Hiring" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="PioneerEmployeeDbModel.Setting">
+              <MappingFragment StoreEntitySet="Setting">
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Bonus_count" ColumnName="Bonus-count" />
+                <ScalarProperty Name="Minus_count" ColumnName="Minus-count" />
+                <ScalarProperty Name="Holiday_s" ColumnName="Holiday's" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PioneerEmployeeDbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StoresModelStoreContainer" CdmEntityContainer="StoresEntities1">
+    <EntitySetMapping Name="Bill_Details">
+      <EntityTypeMapping TypeName="StoresModel.Bill_Details">
+        <MappingFragment StoreEntitySet="Bill-Details">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Head_ID" ColumnName="Head-ID" />
+          <ScalarProperty Name="Item_iD" ColumnName="Item-iD" />
+          <ScalarProperty Name="Qtn" ColumnName="Qtn" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bill_Head">
+      <EntityTypeMapping TypeName="StoresModel.Bill_Head">
+        <MappingFragment StoreEntitySet="Bill-Head">
+          <ScalarProperty Name="paid" ColumnName="paid" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="client_Id" ColumnName="client-Id" />
+          <ScalarProperty Name="Safe_ID" ColumnName="Safe-ID" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Operate_Date" ColumnName="Operate-Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="StoresModel.Client">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name_client" ColumnName="Name-client" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemsTables">
+      <EntityTypeMapping TypeName="StoresModel.ItemsTable">
+        <MappingFragment StoreEntitySet="ItemsTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemUnitsTables">
+      <EntityTypeMapping TypeName="StoresModel.ItemUnitsTable">
+        <MappingFragment StoreEntitySet="ItemUnitsTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Unit_Name" ColumnName="Unit-Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item-ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Safes">
+      <EntityTypeMapping TypeName="StoresModel.Safe">
+        <MappingFragment StoreEntitySet="Safe">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name_safe" ColumnName="Name-safe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stockes">
+      <EntityTypeMapping TypeName="StoresModel.Stocke">
+        <MappingFragment StoreEntitySet="Stockes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Store_ID" ColumnName="Store-ID" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item-ID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoresTables">
+      <EntityTypeMapping TypeName="StoresModel.StoresTable">
+        <MappingFragment StoreEntitySet="StoresTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameStores" ColumnName="NameStores" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="StoresModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="StoresModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="StoresModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="StoresModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StoresModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="StoresModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StoresModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="StoresModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="StoresModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

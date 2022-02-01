@@ -1,0 +1,16 @@
+﻿@model Patient
+<h3>Are you sure to delete this patient</h3>
+<dl>
+    <dt>id : </dt>
+    <dd>@Model.Id</dd>
+    <dt>age : </dt>
+    <dd>@Model.Age</dd>
+    <dt>name :</dt>
+    <dd>@Model.Fullname</dd>
+</dl>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn-warning">Delete </button>
+
+</form>

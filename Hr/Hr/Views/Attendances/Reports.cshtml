@@ -1,0 +1,202 @@
+﻿
+@model Hr.Models.ReportsClass
+
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reports of Employees</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+   
+
+    <div class="form-horizontal">
+        <div class="row form-group  ">
+            @Html.LabelFor(model => model.year, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="YearId" name="YearId">
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row form-group  ">
+            @Html.LabelFor(model => model.month, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="MonthId" name="MonthId">
+                    <option value="1">january</option>
+                    <option value="2">february</option>
+                    <option value="3">march</option>
+                    <option value="4">april</option>
+                    <option value="5">may</option>
+                    <option value="6">june</option>
+                    <option value="7">july</option>
+                    <option value="8">august</option>
+                    <option value="9">september</option>
+                    <option value="10">october</option>
+                    <option value="11">november</option>
+                    <option value="12">december</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn-outline-primary boo"> Search </button>
+        </div>
+        <br><br>
+    </div>
+}
+
+<table class="table" style="border-spacing:3px">
+    <tr>
+        <th>
+            Number of Employees
+        </th>
+        <th>
+            Employee Name
+        </th>
+        <th>
+            Employee Salary
+        </th>
+        <th>
+            Days attendance
+        </th>
+        <th>
+            Days of Absence
+        </th>
+        <th>
+            Number Of Holidays
+        </th>
+        @*<th>
+            Attend Holidays
+        </th>*@
+        <th>
+            hours of bonus
+        </th>
+        <th>
+            hours of minus
+        </th>
+        <th>
+            total bonus
+        </th>
+        <th>
+            total minus
+        </th>
+        <th>
+            Absence penalty
+        </th>
+        <th>
+            net salary
+        </th>
+    </tr>
+
+    @{
+
+        
+
+            for (int i = 1; i <= Model.cnt; i++)
+            {
+        <tr>
+            <td>
+                @(i)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.NameEmployees[i])
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.salaryEmployees[i])
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dayAttendEmployees[i])
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dayAbsenceEmployees[i])
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.EmployeeHolidays[i])
+            </td>
+
+            @*<td>
+                @Html.DisplayFor(model => model.EmployeeAttendHoliday[i])
+            </td>*@
+
+            <td>
+                @Html.DisplayFor(model => model.hoursbonusEmployees[i])
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.hoursminusEmployees[i])
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.bonusEmployees[i])
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.minusEmployees[i])
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.EmployeesAbsencePenalty[i])
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.netsalaryEmployees[i])
+            </td>
+        </tr>
+            }
+
+        }
+    
+
+
+    @*<tr>
+            <td>
+                @Html.DisplayFor(model => model.nameEmp)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.salaryEmp)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dayAttend)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dayAbsence)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.holidays)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Attendholiday)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.hoursbonus)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.hoursminus)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.bonus)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.minus)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AbsencePenalty)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.netsalary)
+            </td>
+        </tr>*@
+</table>
+
+
+

@@ -1,0 +1,16 @@
+﻿@model Doctor
+<h3>Are you sure to delete this Doctor</h3>
+<dl>
+    <dt>Doctor Name : </dt>
+    <dd>@Model.FullName</dd>
+    <dt>Specialty :</dt>
+    <dd>@Model.Description</dd>
+</dl>
+
+<form method="post">
+    <input type="hidden" asp-for="ID" />
+    <button type="submit" class="btn-warning">Delete </button>
+
+</form>
+<br />
+<a asp-controller="Doctors" asp-action="Index">Back To List</a>

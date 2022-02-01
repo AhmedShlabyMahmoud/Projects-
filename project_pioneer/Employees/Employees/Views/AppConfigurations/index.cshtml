@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Employees.Models.AppConfiguration>
+
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MinusMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BonusMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbsnceMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateConfig)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinusMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BonusMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbsnceMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateConfig)
+        </td>
+     
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

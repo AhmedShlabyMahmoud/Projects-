@@ -1,0 +1,308 @@
+﻿@model stores.Controllers.SalseInvoice
+
+@{
+    ViewBag.Title = "SalesInvoice";
+}
+
+<h2>SalesInvoice</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Bill_Head</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Storesid, "Stores", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Storesid", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Storesid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Itemsid, "Items", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Itemsid", null, htmlAttributes: new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Itemsid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.unit, "Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("unit", null, htmlAttributes: new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.unit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Num, "Number Of Item", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Num, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Num, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.count, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.count, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.count, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Add" class="btn btn-default" id="addRow" />
+        </div>
+    </div>
+    <br> <br>  <br>  <br>
+    <br>
+
+
+    <table class="table" id="tblItems">
+        <tr>
+            <th>
+                Store Name
+            </th>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Item Price
+            </th>
+
+        </tr>
+
+
+    </table>
+    <br> <br> <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TotalDis, "Total Before Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotalDis, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discount, "Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+        </div>
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Total, "Total After Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", @type = "number", @readonly = "readonly" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.client_Id, "clients", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("client_Id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.client_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Safe_ID, "Safe_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Safe_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Safe_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Operate_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Operate_Date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Operate_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Operate_Time, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Operate_Time, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Operate_Time, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.paid, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.paid, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.paid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default addRow" id="addRow" />
+        </div>
+    </div>
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.cnt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cnt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cnt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.numbers, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.numbers, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.numbers, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+</div>
+}
+
+<script type="text/jscript">
+
+
+
+
+    $(function () {
+
+        var n = '';
+
+        $('#Storesid').val('choose Store');
+        $('#Itemsid').val('');
+        $('#unit').val('');
+
+        $('#Storesid').change(function () {
+
+            $.getJSON('/Bill_Head/GetStoreItems?storeId=' + $('#Storesid').val(), function (data) {
+                var items = '<option>Select Item</option>';
+                $.each(data, function (i, storeItem) {
+                    items += "<option value='" + storeItem.Id + "'>" + storeItem.Name + "</option>";
+                });
+                $('#Itemsid').html(items);
+                $('#price').val('');
+            });
+        });
+
+      
+        $('#Itemsid').change(function () {
+      
+            $.getJSON('/Bill_Head/GetItemPrice?itemId=' + $('#Itemsid').val() + '&storeId=' + $('#Storesid').val(), function (data) {
+                $('#price').val(data.price);          
+            });
+
+            var x = $('#Itemsid option:selected').text();  
+            $.getJSON('/Bill_Head/GetUnitItems?NameItem=' + x, function (data) { 
+                var items = '<option>Select Unit</option>';
+                $.each(data, function (i, storeItem) {
+                    items += "<option value='" + storeItem.Qunat + "'>" + storeItem.NameUnit + "</option>";
+                });
+                $('#unit').html(items);
+           });
+        });
+
+        $('#unit').change(function () { 
+            
+            $('#Num').val('');
+
+        });
+
+        $('#Num').change(function () {         
+            var v = $('#Itemsid option:selected').text();
+            var x = $('#unit option:selected').text();
+            if ($('#Itemsid').val() == "Select Item" || $('#Itemsid').val() == '')
+                alert("Enter correct value1");
+            else if ($('#unit').val() == "Select Unit" || $('#unit').val() == '')
+                alert("Enter correct value2");
+            else 
+                $.getJSON('/Bill_Head/GetunittQn?itemName=' + v + '&UnitName=' + x, function (data) {
+                    debugger;
+                    var s = Number(data);  
+                    var y = Number($('#Num').val());           
+                    var a = data * $('#Num').val();
+                $('#count').val(a);
+                });
+        });
+
+        $('#Discount').change(function () {
+            if (Number($('#Discount').val()) < 0)
+                $('#Discount').val(0);
+            else if (Number($('#Discount').val()) > Number($('#TotalDis').val())) {  
+                alert("You Can't Enter Discount More Than Total ");
+                $('#Total').val(Number($('#TotalDis').val()));
+            }
+                else { 
+                var Val = $('#TotalDis').val() - $('#Discount').val();
+                $("#Total").val(Val);
+            }
+        
+        });
+
+        $("#delbtn").click(function () {
+          ///  $(this).$("tblItems tr")
+            $(this).parents('tr').first().remove();
+            
+        });
+        $('table').on('click', 'input[type="button"]', function (e) {
+            $(this).closest('tr').remove()
+        })
+
+
+
+        $('#addRow').click(function () {
+            if (Number($('#count').val()) <= 0 || $('#Itemsid').val() == "Select Item" || $('#Itemsid').val() == null || $('#unit').val() == "Select Unit" || $('#unit').val() == '' || $('#Itemsid').val() == '' || $('#unit').val() == null)
+                alert("Enter correct value");      
+            else {
+                //const iditems = [];
+                //$("tblItems tr").each(function () {
+                //    var itemid = $(this).find("td:eq(1)").text().trim();
+                //});
+                //iditems = itemid;
+                //var x = $('#Itemsid').val();
+                //var yes = "yes";
+                //debugger;
+                //for (var i = 0; i < iditems.length; i++) {
+                //    if (x == iditems[i])
+                //       yes="no";  
+                //}
+                //if (yes == "yes") {
+                var newRow = "<tr> <td>'" + $('#Storesid option:selected').text() + "'</td> <td>'" + $('#Itemsid option:selected').text() + "'</td><td>'" + $('#price').val() + "'</td>  <td><button id=\"delbtn\" class=\"btn-success\ onclick=\"deleteRow(this)\"\">delete </button></td></tr >";
+                    $("#tblItems>tbody").append(newRow);
+                    $("#cnt").val((Number($('#cnt').val())) + 1);
+                    //<td><button id=\"delbtn\" class=\"btn-success\">delete </button></td>
+                    $('#numbers').val($('#numbers').val() + $('#count').val() + ":" + $('#Itemsid').val() + ";");
+                    $('#TotalDis').val(Number($('#TotalDis').val()) + (Number($('#price').val()) * Number($('#count').val())));
+                //}
+                //else alert("This item is Exist ");
+            }
+        });
+
+            });
+
+</script>

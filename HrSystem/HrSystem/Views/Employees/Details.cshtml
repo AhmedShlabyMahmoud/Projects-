@@ -1,0 +1,58 @@
+﻿@model HrSystem.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateHiring)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateHiring)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeAttend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeAttend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeLeave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeLeave)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

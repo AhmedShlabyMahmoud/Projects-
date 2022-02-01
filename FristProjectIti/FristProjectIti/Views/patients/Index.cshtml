@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Patient>
+<br />
+<br />
+<a asp-action="Create" class="btn btn-outline-success">Create</a>
+
+<h1>Patients</h1>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Age</th>
+            <th>Notes</th>
+            <th>Name </th>
+            <th>Diagnesis</th>
+            <th>Treatment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Fullname</th>
+                <th>@item.Age     </th>
+                <th>@item.Diagnesis</th>
+                <th>@item.Treatment</th>
+                <th>@item.Notes</th>
+            </tr>
+        }
+    </tbody>
+</table>

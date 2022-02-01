@@ -1,0 +1,50 @@
+﻿@model Project_Poineet.Setting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Setting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bonus_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bonus_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minus_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minus_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Holiday_s)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Holiday_s)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Days)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Days)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

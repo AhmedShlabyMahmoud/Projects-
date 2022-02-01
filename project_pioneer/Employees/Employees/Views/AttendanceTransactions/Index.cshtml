@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Employees.Models.AttendanceTransaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table class="table  table-condensed table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TodayDateTrans)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bonus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attend)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmpName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TodayDateTrans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.minus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bonus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attend)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmpName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit","", new { id = item.Id })   |
+                @Html.ActionLink("Details", "Details", new { id = item.Id ,@class="fas fa-plus"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
